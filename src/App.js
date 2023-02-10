@@ -1,6 +1,10 @@
-import logo from './logo.svg';
+
+import { BrowserRouter,
+  Routes,
+  Route } from 'react-router-dom';
 import './App.css';
-import { Regiser } from './Screens/Register';
+import { Register } from './Screens/Register';
+import { LogIN } from './Screens/LogIN';
 
 function App() {
   return (
@@ -19,7 +23,14 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Regiser/>
+      <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<LogIN/>}/>
+      <Route path="/LogIN" element={<LogIN/>}/>
+      <Route path="/Register" element={<Register/>}/>
+      </Routes>
+      
+      </BrowserRouter>
     </div>
   );
 }
