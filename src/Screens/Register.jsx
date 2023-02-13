@@ -6,6 +6,9 @@ import {
 
 export const Register =()=>{
 
+    const pageTitle = `${"S&TManager-Register"}`;
+    document.title = pageTitle;
+
     const [name,setName]=useState("");
     const [date,setDate]=useState("");
     const [email,setEmail]=useState("");

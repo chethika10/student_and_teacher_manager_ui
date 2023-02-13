@@ -3,6 +3,9 @@ import React,{useState} from "react"
 import { useNavigate } from "react-router-dom"
 
 export const LogIN =()=>{
+    const pageTitle = `${"S&TManager-LogIn"}`;
+    document.title = pageTitle;
+    
     const [userName,setUserName]=useState("");
     const [password,setPassword]=useState("");
     let navigate=useNavigate();
@@ -20,6 +23,8 @@ export const LogIN =()=>{
             <label htmlFor="password">Password</label>
             <input value={password} onChange={(e)=>setPassword(e.target.value)}type="password" placeholder="*******" id="password" name="password"/>
             <br/>
+
+            <button type="submit">LogIn</button>
         </form>
         Have an Account?
         <button onClick={()=>{
