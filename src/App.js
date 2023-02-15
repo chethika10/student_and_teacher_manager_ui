@@ -3,6 +3,7 @@ import { BrowserRouter,
   Routes,
   Route } from 'react-router-dom';
 import './App.css';
+import "./Css/Forms.css"
 import { Register } from './Screens/Register';
 import { LogIN } from './Screens/LogIN';
 

@@ -1,5 +1,6 @@
 import React,{useState} from "react"
 
+
 import { 
   useNavigate } from "react-router-dom"
 
@@ -77,20 +78,25 @@ export const Register =()=>{
             setStatus("you registered as a "+role2)
         }}
         ).catch(()=>{
-            setStatus("Can not register")
+            setStatus("Can't register")
         })
         
     }
 
     return(
         <>
+        <div className="outside-form-container">
+        <div className="form-container">
         <h1>Register</h1>
+        <div className="inside-form-container">
         <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name</label>
+            <br/>
             <input value={name} onChange={(e)=>setName(e.target.value)} type="text"  id="name" name="name"/>
             <br/>
 
             <label htmlFor="date">Birthday</label>
+            <br/>
             <input value={date} onChange={
                 (e)=>{setDate(e.target.value);setAge(calcAge(e.target.value))}
                 } 
@@ -99,25 +105,29 @@ export const Register =()=>{
                 <br/>
 
             <label htmlFor="age">Age</label>
+            <br/>
             <input value={age} readOnly type="text" placeholder={age} id="age" name="age"/>
             <br/>
 
             <label htmlFor="email">Email</label>
+            <br/>
             <input value={email} onChange={(e)=>setEmail(e.target.value)}type="email" placeholder="example@example.com" id="email" name="email"/>
             <br/>
 
             <label htmlFor="userName">UserName</label>
+            <br/>
             <input value={userName} onChange={(e)=>setUserName(e.target.value)}type="text" placeholder="UserName" id="userName" name="userName"/>
             <br/>
 
             <label htmlFor="password">Password</label>
+            <br/>
             <input value={password} onChange={(e)=>setPassword(e.target.value)}type="password" placeholder="*******" id="password" name="password"/>
             <br/>
 
             <label htmlFor="role">Register As a </label>
-            <div>
+            <div >
                 
-                <select value={role2} onChange={(e)=>{setRole(getRole(e.target.value))} }>
+                <select className="selection" value={role2} onChange={(e)=>{setRole(getRole(e.target.value))} }>
                     <option>Select...</option>
                     <option> Student</option>
                     <option> Teacher</option>
@@ -126,17 +136,20 @@ export const Register =()=>{
                 
             </div>
             
-            <button type="submit">Register</button>
+            <button type="submit" >Register</button>
         </form>
-        {status}
+        <div className="status">
+        {status }
+        </div>
         <br/>
+        </div>
         Have an Account?
         <button onClick={()=>{
             navigate("/LogIN")
         }}>LogIN</button>
+</div>
 
-
-        
+</div>
         </>
     )
 }
