@@ -3,9 +3,10 @@ import { BrowserRouter,
   Routes,
   Route } from 'react-router-dom';
 import './App.css';
-import "./Css/Forms.css"
-import { Register } from './Screens/Register';
-import { LogIN } from './Screens/LogIN';
+import "./css/Forms.css"
+import { Register } from './screens/Register';
+import { LogIN } from './screens/LogIN';
+import { Home } from './screens/Home';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path="/" element={<LogIN/>}/>
       <Route path="/LogIN" element={<LogIN/>}/>
       <Route path="/Register" element={<Register/>}/>
+      <Route path="/Home" element={<Home/>}/>
       </Routes>
       
       </BrowserRouter>

@@ -36,6 +36,11 @@ export const LogIN =()=>{
         <button onClick={()=>{
             navigate("/Register")
         }}>Register</button>
+<br/>
+<button onClick={()=>{
+            navigate("/Home")
+        }}>Home</button>
+
            </div> 
            </div>
         </>
