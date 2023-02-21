@@ -1,6 +1,9 @@
 import React,{useState} from "react"
 
 import { useNavigate } from "react-router-dom"
+import { NavBar } from "../components/NavBar";
+
+import { login } from "../services/authServices";
 
 export const LogIN =()=>{
     const pageTitle = `${"S&TManager-LogIn"}`;
@@ -10,6 +13,26 @@ export const LogIN =()=>{
     const [password,setPassword]=useState("");
     let navigate=useNavigate();
 
+    const handleSubmit = async (e)=>{
+        e.preventDefault()
+
+        const data = {
+            "username":userName,
+            "password":password
+        }
+
+        // TODO: validate user details 
+
+        try {
+            const response = await login(data);
+            console.log("login :",response)
+
+        }catch(err){
+            console.log(err)
+        }
+
+    }
+
     return(
         <>
         <div className="outside-form-container">
@@ -18,7 +41,7 @@ export const LogIN =()=>{
         LogIn
     </h1>
     <div className="inside-form-container">
-        <form >
+        <form onSubmit={handleSubmit}>
             <label htmlFor="userName">UserName</label>
             <br/>
             <input value={userName} onChange={(e)=>setUserName(e.target.value)}type="text" placeholder="UserName" id="userName" name="userName"/>
@@ -29,7 +52,7 @@ export const LogIN =()=>{
             <input value={password} onChange={(e)=>setPassword(e.target.value)}type="password" placeholder="*******" id="password" name="password"/>
             <br/>
 
-            <button type="submit">LogIn</button>
+            <button type="submit" >LogIn</button>
         </form>
         </div>
         Don't Have an Account?
@@ -37,9 +60,7 @@ export const LogIN =()=>{
             navigate("/Register")
         }}>Register</button>
 <br/>
-<button onClick={()=>{
-            navigate("/Home")
-        }}>Home</button>
+
 
            </div> 
            </div>
