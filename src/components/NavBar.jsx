@@ -1,10 +1,14 @@
-import React from "react"
+import React,{useContext} from "react"
+import AuthContext from "../context/AuthContext"
+
 import { getAboutUs, getHomeLink, getLogin } from "./links"
 import { NavBarDropdown } from "./NavBarDropdown"
+
 //import { useNavigate } from "react-router-dom"
 
 
 export const NavBar =()=>{
+  let {user}=useContext(AuthContext);
 
 
     return(
@@ -30,35 +34,16 @@ export const NavBar =()=>{
         </li>
         
       </ul>
+      {user ?( <NavBarDropdown sub={user.sub}/>
+      ):(
       <a href={getLogin()}>
       <button className="btn btn-outline-success" >LogIn</button>
       </a>
+      )
+}
     </div>
   </div>
 </nav>
         
     )
 }
-{/* 
-
-      <a href={getLogin()}>
-      <button className="btn btn-outline-success" >LogIn</button>
-      </a>
-
-<li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> 
-    //
-         <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        
-      </form>
-    */}

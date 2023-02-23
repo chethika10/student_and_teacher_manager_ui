@@ -1,37 +1,19 @@
-import React,{useState} from "react"
+import React,{useContext,useRef} from "react"
 
 import { useNavigate } from "react-router-dom"
-import { NavBar } from "../components/NavBar";
+import AuthContext from "../context/AuthContext";
 
-import { login } from "../services/authServices";
 
 export const LogIN =()=>{
     const pageTitle = `${"S&TManager-LogIn"}`;
     document.title = pageTitle;
     
-    const [userName,setUserName]=useState("");
-    const [password,setPassword]=useState("");
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
     let navigate=useNavigate();
 
-    const handleSubmit = async (e)=>{
-        e.preventDefault()
+    let {loginUser}=useContext(AuthContext)
 
-        const data = {
-            "username":userName,
-            "password":password
-        }
-
-        // TODO: validate user details 
-
-        try {
-            const response = await login(data);
-            console.log("login :",response)
-
-        }catch(err){
-            console.log(err)
-        }
-
-    }
 
     return(
         <>
@@ -41,15 +23,15 @@ export const LogIN =()=>{
         LogIn
     </h1>
     <div className="inside-form-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={loginUser}>
             <label htmlFor="userName">UserName</label>
             <br/>
-            <input value={userName} onChange={(e)=>setUserName(e.target.value)}type="text" placeholder="UserName" id="userName" name="userName"/>
+            <input ref={usernameRef} type="text" placeholder="UserName" id="userName" name="userName"/>
             <br/>
 
             <label htmlFor="password">Password</label>
             <br/>
-            <input value={password} onChange={(e)=>setPassword(e.target.value)}type="password" placeholder="*******" id="password" name="password"/>
+            <input ref={passwordRef} type="password" placeholder="*******" id="password" name="password"/>
             <br/>
 
             <button type="submit" >LogIn</button>

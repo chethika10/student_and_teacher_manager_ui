@@ -1,4 +1,4 @@
-import React,{} from "react"
+import React,{  } from "react"
 
 import { useNavigate } from "react-router-dom"
 
@@ -11,7 +11,6 @@ export const Home =()=>{
     let navigate=useNavigate();
 
 
-
     return(
         <>
         <div className="outside-form-container">
@@ -21,6 +20,12 @@ export const Home =()=>{
         <button type="button" className="btn btn-primary" onClick={()=>{
             navigate("/LogIN")
         }}>Login</button>
+
+        <button type="button" className="btn btn-primary" onClick={()=>{
+            navigate("/userDetails")
+        }}>userDetails</button>
+
+
         </div>
         </div>
         </div>

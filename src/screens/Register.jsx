@@ -1,6 +1,5 @@
 import React,{useState} from "react"
 
-import { NavBar } from "../components/NavBar";
 import { 
   useNavigate } from "react-router-dom"
 
@@ -46,7 +45,7 @@ export const Register =()=>{
         }
         else if (role==="Manager"){
             setRole2("Manager")
-            return "MANAGER";
+            return "ADMIN";
         }
         else{
             setRole2("Select...")
@@ -62,7 +61,7 @@ export const Register =()=>{
         const user={name,age,birthDay,userName,role,password,emailAddress}
         console.log(user)
 
-        fetch("http://localhost:8080/stmanager/addorupdate",{
+        fetch("http://localhost:8080/stmanager/register",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(user)
