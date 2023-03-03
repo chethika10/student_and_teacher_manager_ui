@@ -9,6 +9,8 @@ import { NavBarDropdown } from "./NavBarDropdown"
 
 export const NavBar =()=>{
   let {user}=useContext(AuthContext);
+  const pageTitle = `${"S&TManager"}`;
+  document.title = pageTitle;
 
 
     return(

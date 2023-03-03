@@ -42,7 +42,7 @@ export const http = axios.create({
             }
             ).catch(function (error) {
               console.log(error.response.data.errorMessage);
-              if (error.response.status === 403 && error.response.data.errorMessage ==="RefreshTokenExpiredException"){
+              if (error.response.status === 403 && (error.response.data.errorMessage ==="RefreshTokenExpiredException"||error.response.data.errorMessage ==="User is logged out")){
                 // const navigate=useNavigate()
                 localStorage.removeItem('authTokens')
                 alert("Sesson expired refresh the page")
@@ -64,7 +64,7 @@ export const http = axios.create({
             return http(originalConfig)
 
         }
-        else if (error.response.status === 403 && error.response.data.errorMessage ==="RefreshTokenExpiredException"){
+        else if (error.response.status === 403 && (error.response.data.errorMessage ==="RefreshTokenExpiredException"||error.response.data.errorMessage ==="User is logged out")){
           // const navigate=useNavigate()
           localStorage.removeItem('authTokens')
           alert("Sesson expired refresh the page")
