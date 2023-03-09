@@ -72,7 +72,7 @@ export const AllCourcesAdmin = () => {
   };
   const navigateUser = (index) => {
     console.log(index);
-    navigate("/ViewCourse", { state: { id: index } });
+    navigate("/ViewCourse", { state: { courseId: index } });
   };
 
   useEffect(() => {
@@ -143,7 +143,7 @@ export const AllCourcesAdmin = () => {
                       <button
                         type="button"
                         className="btn btn-outline-dark"
-                        // onClick={() => navigateUser(item[0])}//change
+                        onClick={() => navigateUser(item[0])}
                       >
                         View
                       </button>
@@ -186,7 +186,7 @@ export const AllCourcesAdmin = () => {
                       <button
                         type="button"
                         className="btn btn-outline-dark"
-                        // onClick={() => navigateUser(item[0])}
+                        onClick={() => navigateUser(item[0])}
                       >
                         View
                       </button>

@@ -15,5 +15,7 @@ export const getRegister=()=>{
     return("http://localhost:3000/Register")
 }
 
-
+export const getCoursesLink=()=>{
+    return ("http://localhost:3000/Courses")
+}
 

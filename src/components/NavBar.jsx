@@ -1,7 +1,7 @@
 import React,{useContext} from "react"
 import AuthContext from "../context/AuthContext"
 
-import { getAboutUs, getHomeLink, getLogin } from "./links"
+import { getAboutUs, getCoursesLink, getHomeLink, getLogin } from "./links"
 import { NavBarDropdown } from "./NavBarDropdown"
 
 //import { useNavigate } from "react-router-dom"
@@ -29,10 +29,10 @@ export const NavBar =()=>{
           <a className="nav-link" href={getAboutUs()}>About Us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Cources</a>
+          <a className="nav-link" href={getCoursesLink()}>Cources</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Contact Us</a>
+          <a className="nav-link" href={getAboutUs()}>Contact Us</a>
         </li>
         
       </ul>

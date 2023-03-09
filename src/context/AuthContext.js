@@ -1,4 +1,4 @@
-import { createContext,useState,useEffect } from "react";
+import { createContext,useState } from "react";
 import jwtDecode from "jwt-decode";
 import { login, logout } from "../services/authServices";
 import { useNavigate } from "react-router-dom";
@@ -69,6 +69,7 @@ export const AuthProvider=({children})=>{
     let contextData={
         user:user,
         authTokens:authTokens,
+        user2:user,
         setUser:setUser,
         setAuthTokens:setAuthTokens,
         loginUser:loginUser,

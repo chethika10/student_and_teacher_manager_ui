@@ -6,6 +6,7 @@ export const AddNewCourse = () => {
   const [courseName, setCourseName] = useState("");
   const [moduleCode, setModuleCode] = useState("");
   const [fee, setFee] = useState(0);
+  const [startDate,setStartDate]=useState("")
   const http=useHttp()
   const navigate=useNavigate()
 
@@ -19,7 +20,7 @@ export const AddNewCourse = () => {
   }
   const addCourse=async (e)=>{
     e.preventDefault();
-    const course={courseName,moduleCode,fee}
+    const course={courseName,moduleCode,fee,startDate}
     const { data } = await http.post("/addCourse",course);
     console.log(data)
     if(data.courseId!==0){
@@ -71,6 +72,19 @@ export const AddNewCourse = () => {
                 name="fee"
               />
               <br />
+              <label htmlFor="date">Start date</label>
+              <br />
+              <input
+                value={startDate}
+                onChange={(e) => {
+                  setStartDate(e.target.value);
+                }}
+                type="date"
+                id="startDate"
+                name="startDate"
+              />
+              <br />
+
               <button type="submit" className="btn btn-outline-dark">Add Course</button>
             </form>
           </div>

@@ -10,7 +10,7 @@ export const AboutUs=()=>{
         <div className="form-container">
         <h1>About Us</h1>
  
-        <p>cddscs dcsdc dcsdcs dcscs dcsdc</p>
+        <p>This is a learning management system</p>
 
         </div>
         </div>

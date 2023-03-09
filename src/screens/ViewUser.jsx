@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { AdminUserView } from "../components/viewUserAdmin/AdminUserView";
+import { TeacherUserView } from "../components/ViewUserTeacher.jsx/TeacherUserView";
+import AuthContext from "../context/AuthContext";
 import useHttp from "../services/useHttp";
 
 export const ViewUser = () => {
@@ -7,6 +10,7 @@ export const ViewUser = () => {
   const [newSalary,setNewSalary]=useState("");
   const http = useHttp();
   const location = useLocation();
+  const {user2}=useContext(AuthContext)
   const index = location.state.id;
 
   const getdata = async () => {
@@ -48,7 +52,18 @@ export const ViewUser = () => {
   useEffect(() => {
     setUser(getdata());
   }, []);
+  const getOtherData=()=>{
+    if(user2 && user2.role[0]==="ADMIN"){
+      return <AdminUserView user={user}/>
+    }
+    else if(user2 && user2.role[0]==="TEACHER"){
+      return <TeacherUserView user={user}/>
+    }
+    else {
+      return <></>
+    }
 
+  }
   return (
     <>
       <div className="outside-form-container">
@@ -119,7 +134,7 @@ export const ViewUser = () => {
               name="role"
             />
             <br />
-            {user.role !== "STUDENT" ? (
+            {user.role !== "STUDENT" && user2.role[0] === "ADMIN" ? (
               <>
                 <label htmlFor="Salary">Salary</label>
                 <input
@@ -135,7 +150,7 @@ export const ViewUser = () => {
               <></>
             )}
 
-            {user.role !== "STUDENT" ? (
+            {user.role !== "STUDENT" && user2.role[0] === "ADMIN"? (
               <div className="input-group mb-3">
                 <button
                   className="btn btn-outline-secondary"
@@ -154,10 +169,12 @@ export const ViewUser = () => {
                   aria-describedby="button-addon1"
                   onChange={(e) => setNewSalary(e.target.value)}
                 />
+                <br />
               </div>
             ) : (
               <></>
             )}
+            {getOtherData()}
           </div>
         </div>
       </div>

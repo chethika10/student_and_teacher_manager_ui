@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -11,14 +11,38 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [role, setRole] = useState("");
   const [role2, setRole2] = useState("");
   const [age, setAge] = useState("");
   // const [user2,setUser2]=useState("");
   const [status, setStatus] = useState("");
+  const [validationError, setValidationError] = useState("");
+  const [matcherError, setMatcherError] = useState("");
 
   let navigate = useNavigate();
+  const passwordMatcher = () => {
 
+    if (password2 !== password) {
+      setMatcherError("Passwords do not match");
+    } else {
+      setMatcherError("");
+    }
+  };
+  const handlePasswordChange = () => {
+
+    if (!password.match(/^.{8,}$/)) {
+      setValidationError("Password must be at least 8 characters long");
+    } else if (!password.match(/^(?=.*[A-Z]).+$/)) {
+      setValidationError("Password must contain at least one uppercase letter");
+    } else if (!password.match(/^(?=.*[a-z]).+$/)) {
+      setValidationError("Password must contain at least one lowercase letter");
+    } else if (!password.match(/^(?=.*\d).+$/)) {
+      setValidationError("Password must contain at least one number");
+    } else {
+      setValidationError("");
+    }
+  };
   const calcAge = (date) => {
     var today = new Date();
     var birthday = new Date(date);
@@ -46,17 +70,21 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(matcherError || validationError){
+      return
+    }
     var birthDay = date;
-    var emailAddress = email;
     var user2 = "";
+    var data=[]
+    var rowPassword = password;
     const user = {
       name,
       age,
       birthDay,
       userName,
       role,
-      password,
-      emailAddress,
+      rowPassword,
+      email,
     };
     console.log(user);
 
@@ -68,20 +96,28 @@ export const Register = () => {
       .then((res) => res.json())
       .then((result) => {
         //setUser2(result);
-        user2 = result;
+        data = result;
       })
       .then(() => {
-        if (user2 === "" || user2 === "0" || user2 === 0) {
-          setStatus("Can not register");
+        if (data[0] === "" || data[0] === "0" || data[0] === 0) {
+          console.log(data)
+          setStatus(data[1]);
         } else {
+          console.log(data)
           setStatus("you registered as a " + role2);
+          alert("you registered as a " + role2);
+          navigate("/LogIN");
         }
       })
       .catch(() => {
         setStatus("Can't register");
       });
   };
-
+  useEffect(() => {
+    passwordMatcher();
+    handlePasswordChange()
+    //console.log("aaa")
+  }, [password,password2]);
   return (
     <>
       <div className="outside-form-container">
@@ -154,13 +190,36 @@ export const Register = () => {
               <br />
               <input
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
                 type="password"
                 placeholder="*******"
                 id="password"
                 name="password"
               />
               <br />
+
+              <div className="status">
+                {validationError && <p>{validationError}</p>}
+              </div>
+
+              <label htmlFor="password">Confirm Password</label>
+              <br />
+              <input
+                value={password2}
+                onChange={(e) => {
+                  setPassword2(e.target.value);
+                }}
+                type="password"
+                placeholder="*******"
+                id="password2"
+                name="password2"
+              />
+              <br />
+              <div className="status">
+                {matcherError && <p>{matcherError}</p>}
+              </div>
 
               <label htmlFor="role">Register As a </label>
               <div>
