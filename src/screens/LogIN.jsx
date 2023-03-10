@@ -34,11 +34,11 @@ export const LogIN =()=>{
             <input ref={passwordRef} type="password" placeholder="*******" id="password" name="password"/>
             <br/>
 
-            <button type="submit" >LogIn</button>
+            <button className="btn btn-outline-dark" type="submit" >LogIn</button>
         </form>
         </div>
         Don't Have an Account?
-        <button onClick={()=>{
+        <button className="btn btn-outline-dark" onClick={()=>{
             navigate("/Register")
         }}>Register</button>
 <br/>

@@ -24,6 +24,8 @@ import { ViewCoursesAdmin } from "./components/viewUserAdmin/ViewCourcesAdmin";
 import TeacherRoute from "./protectedRouts/TeacherRoute";
 import { ViewCoursesTeacher } from "./components/ViewUserTeacher.jsx/ViewCoursesTeacher";
 import { MyCourses } from "./screens/MyCourses";
+import { ChangeCredentials } from "./screens/ChangeCredentials";
+import { EditUserDetails } from "./screens/EditUserDetails";
 
 function App() {
   const pageTitle = `${"S&TManager"}`;
@@ -50,6 +52,22 @@ function App() {
               element={
                 <AuthenticatedRoute>
                   <UserDetails />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/ChangeCredentials"
+              element={
+                <AuthenticatedRoute>
+                  <ChangeCredentials />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/editaccount"
+              element={
+                <AuthenticatedRoute>
+                  <EditUserDetails />
                 </AuthenticatedRoute>
               }
             />

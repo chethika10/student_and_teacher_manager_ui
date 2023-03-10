@@ -108,7 +108,7 @@ export const ViewUser = () => {
             <input
               readOnly
               type="email"
-              value={user.emailAddress || ""}
+              value={user.email || ""}
               id="email"
               name="email"
             />

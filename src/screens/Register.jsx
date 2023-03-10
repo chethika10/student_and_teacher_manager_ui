@@ -237,13 +237,13 @@ export const Register = () => {
                 </select>
               </div>
 
-              <button type="submit">Register</button>
+              <button type="submit" className="btn btn-outline-dark">Register</button>
             </form>
             <div className="status">{status}</div>
             <br />
           </div>
           Have an Account?
-          <button
+          <button className="btn btn-outline-dark"
             onClick={() => {
               navigate("/LogIN");
             }}

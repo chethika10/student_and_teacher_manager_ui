@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useHttp from "../services/useHttp"
 
 export const UserDetails=()=>{
 
     const [user,setUser]=useState({})
     const http=useHttp()
+    const navigate=useNavigate();
 
     const getdata=async ()=>{
         const {data}=await http.get("/profile")
@@ -64,7 +66,7 @@ export const UserDetails=()=>{
 
             <label htmlFor="email">Email</label>
             <br/>
-            <input readOnly type="email" value={ user.emailAddress||""} id="email" name="email"/>
+            <input readOnly type="email" value={ user.email||""} id="email" name="email"/>
             <br/>
 
             <label htmlFor="userName">UserName</label>
@@ -78,7 +80,8 @@ export const UserDetails=()=>{
 
             
 
-            <button>Edit </button>
+            <button type="button" className="btn btn-outline-dark" onClick={()=>navigate("/editaccount")}>Edit profile</button>
+            <button type="button" className="btn btn-outline-dark" onClick={()=>navigate("/ChangeCredentials")}>Change Credentials</button>
         </div>
         </div>
         </div>
