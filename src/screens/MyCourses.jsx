@@ -55,7 +55,7 @@ export const MyCourses=()=>{
       <>
         <div className="outside-form-container">
           <div className="form-container">
-            <h1>Courses</h1>
+            <h1>My Courses</h1>
   
             <table className="table ">
               <thead>
